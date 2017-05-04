@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+  </head>
+  <body>
+    <h1>Success!</h1>
+    <h2>You've registered as a new user at Blocipedia.</h2>
+    <p>Here's your profile info:</p>
+    <p> User: <%= @user.name %></p>
+    <p>Email: <%= @user.email %></p>
+
+    <%= link_to "View your profile on the site", edit_registration_path_url %> 
+  </body>
+</html>
