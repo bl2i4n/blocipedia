@@ -11,7 +11,9 @@
   <div class="contiainer">
     <ul class="nav nav-tabs">
       <li><%= link_to "Blocipedia", root_path %></li>
-    </ul>
+      <li><%= link_to "About", welcome_about_path %></li>
+
+  <div class="pull-right user-info">
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
     <% end %>
@@ -28,6 +30,8 @@
       <%= link_to "Sign In", new_user_session_path, :class => 'navbar-link'  %>
     <% end %>
 <%= yield %>
+  </div>
+  </ul>
   </div>
 </body>
 </html>
