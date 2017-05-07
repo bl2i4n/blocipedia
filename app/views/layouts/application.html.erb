@@ -9,28 +9,28 @@
 </head>
 <body>
   <div class="contiainer">
+    <div>
     <ul class="nav nav-tabs">
       <li><%= link_to "Blocipedia", root_path %></li>
+      <li><%= link_to "Wikis", wikis_path %></li>
       <li><%= link_to "About", welcome_about_path %></li>
+      <% if user_signed_in? %>
+        <li class="pull-right"><%= link_to 'Profile', edit_user_registration_path %></li>
+        <li class="pull-right"><%= link_to 'Logout', destroy_user_session_path, method: :delete%></li><br />
+        <li class="pull-right">Signed in as <%= current_user.name %></li>
+      <% else %>
+        <li class="pull-right"><%= link_to 'Sign Up', new_user_registration_path %></li>
+        <li class="pull-right"><%= link_to 'Login', new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
     <% end %>
     <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
+      <p class="alert alert-danger"><%= notice %></p>
     <% end %>
-    <!-- # #1 -->
-    <div class="pull-right user-info">
-    <% if user_signed_in? %>
-      Signed in as: <strong><%= current_user.email %></strong> |
-      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> - <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-    <% else %>
-    <!-- # #2 -->
-      <%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link'  %> -
-      <%= link_to "Sign In", new_user_session_path, :class => 'navbar-link'  %>
-    <% end %>
-<%= yield %>
+  <%= yield %>
   </div>
-  </ul>
-  </div
 </body>
 </html>
