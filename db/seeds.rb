@@ -1,4 +1,5 @@
 require 'test_data'
+require 'user_data'
 
 #Create first user
 1.times do
@@ -9,6 +10,15 @@ require 'test_data'
   )
 end
 brian = User.first
+
+#did this because faker gem wasn't installing
+10.times do
+  User.create!(
+  name: UserData.user_name,
+  email: UserData.user_email,
+  password: "password"
+  )
+end
 
 #Create Wikis
 25.times do
