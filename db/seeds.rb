@@ -1,4 +1,4 @@
-require 'test_data'
+include Faker
 require 'user_data'
 
 #Create first user
@@ -11,24 +11,24 @@ require 'user_data'
 end
 brian = User.first
 
-#did this because faker gem wasn't installing
+#Create users with faker
 10.times do
   User.create!(
-  name: UserData.user_name,
-  email: UserData.user_email,
-  password: "password"
+  email: Faker::Internet.email,
+  password: Faker::Internet.password
   )
 end
+users = User.all
 
 #Create Wikis
 25.times do
   Wiki.create!(
-  title: TestData.wiki_title,
-  body: TestData.wiki_body,
-  private: false,
-  user: brian
+  title: Faker::Lorem.sentence,
+  body: Faker::Lorem.paragraph
   )
 end
+wikis = Wiki.all
+
 
 puts "Seed finished"
 puts "#{User.count} users created"
