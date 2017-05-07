@@ -1,0 +1,8 @@
+<% if user_signed_in? %>
+<div class="pull-right">
+  <p>Currently signed in as: <%= @user.name %></p>
+  <p>Role: <%= @user.role %></p>
+</div>
+<% end %>
+
+<%= render partial: 'users/user', locals: { user: @user } %>

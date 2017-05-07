@@ -17,12 +17,19 @@
       <% if user_signed_in? %>
         <li class="pull-right"><%= link_to 'Profile', edit_user_registration_path %></li>
         <li class="pull-right"><%= link_to 'Logout', destroy_user_session_path, method: :delete%></li><br />
-        <li class="pull-right">Signed in as <%= current_user.name %></li>
+        <!-- <li class="pull-right">Signed in as <%= current_user.name %></li> -->
       <% else %>
         <li class="pull-right"><%= link_to 'Sign Up', new_user_registration_path %></li>
         <li class="pull-right"><%= link_to 'Login', new_user_session_path %></li>
       <% end %>
     </ul>
+    <% if user_signed_in? %>
+      <div class="pull-right text-center">
+        <h2>User Profile</h2>
+        <h4>Currently signed in as: <strong><%= current_user.name %></strong></h4>
+        <h4>Role: <%= current_user.role.capitalize %></h4>
+      </div>
+    <% end %>
   </div>
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
