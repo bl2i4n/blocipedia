@@ -20,9 +20,15 @@
          <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter important information" %>
        </div>
        <div class="form-group">
-
-         <%= f.submit "Save", class: 'btn btn-success' %>
+         <% if private_wikis? %>
+          <%= f.label :private, class: 'checkbox' do %>
+            <%= f.check_box :private %> Private wiki?
+            <% end %>
+          <% else %>
+            <p>Standard users can only create public wikis. To create unlimited private wikis, upgrade your account.</p>
+         <% end %>
        </div>
+       <%= f.submit "Save", class: 'btn btn-success' %>
      <% end %>
    </div>
  </div>
