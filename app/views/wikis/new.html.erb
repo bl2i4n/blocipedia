@@ -25,7 +25,7 @@
             <%= f.check_box :private %> Private wiki?
             <% end %>
           <% else %>
-            <p>Standard users can only create public wikis. To create unlimited private wikis, upgrade your account.</p>
+            <p>Standard users can only create public wikis. To create unlimited private wikis, <%= link_to 'upgrade your account.', edit_user_registration_path %></p>
          <% end %>
        </div>
        <%= f.submit "Save", class: 'btn btn-success' %>
