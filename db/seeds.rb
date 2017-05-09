@@ -29,6 +29,15 @@ users = User.all
 end
 wikis = Wiki.all
 
+#Create private Wikis
+25.times do
+  Wiki.create!(
+  title: Faker::Lorem.sentence,
+  body: Faker::Lorem.paragraph,
+  private: true,
+  user: users.sample
+  )
+end
 
 puts "Seed finished"
 puts "#{User.count} users created"
