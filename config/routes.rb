@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get 'users/show'
 
+  resources :collaborators, only: [:create, :destroy]
+
   resources :users, only: [:show]
 
   resources :wikis

@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_save { self.role ||= :standard }
 
-  has_many :wikis
+  has_many :collaborators
+  has_many :wikis, through: :collaborators
 
   enum role: [:standard, :premium, :admin]
 
