@@ -2,6 +2,10 @@ class CollaboratorsController < ApplicationController
 
   before_action :get_wiki
 
+  def index
+    @users = User.all
+  end
+
   def new
     @collaborator = Collaborator.new
   end
@@ -11,11 +15,10 @@ class CollaboratorsController < ApplicationController
 
     if @collaborator.save
       flash[:notice] = "Collaborator added."
-      redirect_to edit_wiki_path(@wiki)
     else
       flash[:alert] = "Error occured. Please try again."
-      redirect_to edit_wiki_path(@wiki)
     end
+    redirect_to wiki_collaborators_path(@wiki)
   end
 
   def destroy
@@ -23,11 +26,10 @@ class CollaboratorsController < ApplicationController
 
     if @collaborator.destroy
       flash[:notice] = "Collaborator removed."
-      redirect_to edit_wiki_path(@wiki)
     else
       flash[:alert] = "Error occured. Please try again."
-      redirect_to edit_wiki_path(@wiki)
     end
+    redirect_to wiki_collaborators_path(@wiki)
   end
 
   private

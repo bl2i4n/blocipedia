@@ -1,0 +1,22 @@
+<h3>Add Collaborators</h3>
+<div class='pull-right'><h4><%= link_to "Back To: Edit Wiki", edit_wiki_path(@wiki) %></h4>
+</div>
+  <table>
+    <tr><th>User Name</th><th>User Email</th><th>Collaborator?</th></tr>
+  <% @users.each do |user| %>
+    <% if user.id != @wiki.user_id %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <% if @wiki.users.include?(user) %>
+            <%= link_to "Remove", wiki_collaborator_path(@wiki, @wiki.collaborator_for(user)), method: :delete, class: 'btn btn-danger' %>
+          <% else %>
+            <%= link_to "Add", wiki_collaborators_path(@wiki.id, user_id: user.id), method: :post, class: 'btn btn-success' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %> <!-- end of if statement -->
+  <% end %> <!-- end of @users.each loop -->
+  </table>
+</div>

@@ -7,13 +7,10 @@
        <%= link_to "Create New Wiki", new_wiki_path, class: 'btn btnsuccess' %>
      </div>
     <br>
-    <h2>Private Wikis</h2>
-    <strong>Private Wikis You Have Access To</strong>
-    <%= render @private_wikis %>
-    <h2>Your Wikis</h2>
-    <%= render @user_wikis %>
-    <h2>Public Wikis</h2>
-    <%= render @public_wikis %>
+
+    <h2>Wikis I have access to</h2>
+    <%= render @policy_wikis %>
+
    </div>
 
  </div>

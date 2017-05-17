@@ -1,0 +1,28 @@
+<%= form_for @wiki do |f| %>
+   <div class="form-group">
+     <%= f.label :title %>
+     <%= f.text_field :title, class: 'form-control', placeholder: "Edit wiki title" %>
+   </div>
+   <div class="form-group">
+     <%= f.label :body %>
+     <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Edit wiki body" %>
+   </div>
+   <div>Markdown: #header, *italics*, **bold**, `code`, *list-item </div>
+   <div class="form-group">
+     <% if private_wikis? %>
+       <%= f.label :private, class: 'checkbox' do %>
+         <%= f.check_box :private %> Private wiki?
+         <% end %>
+       <% else %>
+         <p>Standard users can only create public wikis. To create unlimited private wikis, <%= link_to 'upgrade your account.', edit_user_registration_path %></p>
+   </div>
+      <% end %>  <!-- end of private wiki loop -->
+
+    <%= f.submit "Save", class: 'btn btn-success' %>
+
+ <% end %>
+
+ <!-- only admins and wiki authors can edit collaborators -->
+ <% if @wiki.private && current_user.admin? || current_user.id == @wiki.user_id %>
+  <%= link_to "Manage Collaborators", wiki_collaborators_path(@wiki), class: "btn btn-info" %>
+ <% end %>

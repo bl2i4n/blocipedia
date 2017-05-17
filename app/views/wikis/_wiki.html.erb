@@ -1,10 +1,17 @@
 <div class="media">
    <div class="media-body">
      <h4 class="media-heading">
-       <%= link_to wiki.title, wiki %>
+      <%= link_to wiki.title, wiki %>
      </h4>
+     <% if wiki.private? && current_user.id == wiki.user_id %>
+       <h5>Private Wiki - Author</h5>
+     <% elsif wiki.private? && current_user.id != wiki.user_id %>
+       <h5>Private Wiki = Access Granted By Wiki Author</h5>
+     <% else %>
+       <h5>Public Wiki</h5>
+     <% end %>
      <small>
-       <%= wiki.body %>
+      <%= wiki.body %>
      </small>
    </div>
  </div>

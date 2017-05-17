@@ -10,41 +10,6 @@
      </ul>
    </div>
    <div class="col-md-8">
-     <%= form_for @wiki do |f| %>
-       <div class="form-group">
-         <%= f.label :title %>
-         <%= f.text_field :title, class: 'form-control', placeholder: "Enter post title" %>
-       </div>
-       <div class="form-group">
-         <%= f.label :body %>
-         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter post body" %>
-       </div>
-       <div>Markdown: #header, *italics*, **bold**, `code`, *list-item </div>
-       <div class="form-group">
-         <% if private_wikis? %>
-           <%= f.label :private, class: 'checkbox' do %>
-              <%= f.check_box :private %> Private wiki?
-              <% end %>
-         <% else %>
-              <p>Standard users can only create public wikis. To create unlimited private wikis, <%= link_to 'upgrade your account.', edit_user_registration_path %></p>
-         </div>
-          <% end %>
-          <div class ="form-group">
-          <table>
-              <tr><th>User Name</th><th>User Email</th><th>Collaborator?</th></tr>
-            <% @users.each do |user| %>
-              <tr><td><%= user.name %></td><td><%= user.email %><td>
-              <% if is_collab?(user.id, @collaborators) %>
-                <%= link_to "Remove", wiki_collaborator_path(@wiki.id, @wiki.collaborators.find_by_user_id(user.id).id), method: :delete, class: 'btn btn-danger' %>
-              <% else %>
-                <%= link_to "Add", wiki_collaborators_path(@wiki.id, user_id: user.id), method: :post, class: 'btn btn-success' %>
-              <% end %>
-            </td></tr>
-            <% end %>
-          </table>
-        </div>
-
-       <%= f.submit "Save", class: 'btn btn-success' %>
-     <% end %>
+     <%= render partial: 'wikis/form' %>
    </div>
  </div>
