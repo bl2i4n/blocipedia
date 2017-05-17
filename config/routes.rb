@@ -7,11 +7,11 @@ Rails.application.routes.draw do
 
   get 'users/show'
 
-  resources :collaborators, only: [:create, :destroy]
-
   resources :users, only: [:show]
 
-  resources :wikis
+  resources :wikis do
+    resources :collaborators, only: [:new, :create, :destroy]
+  end
 
   resources :charges, only: [:new, :create]
   get "downgrade", to: "charges#downgrade"
